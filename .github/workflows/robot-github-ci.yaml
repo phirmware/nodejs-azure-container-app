@@ -8,7 +8,7 @@ name: Deploy to Amazon Ecs by Clouddley
             - main
 env:
     AWS_REGION: us-west-2
-    ECR_REPOSITORY: zeus-clouddleytest-url-test900
+    ECR_REPOSITORY: zeus-the-tester-1
 jobs:
     deploy:
         name: Deploy
@@ -35,7 +35,7 @@ jobs:
                 SECRET: ${{ secrets.PGP_PASSPHRASE }}
               id: build_image
               run: |-
-                docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
                 docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
                 BUILD_IMAGE=$( echo "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" | base64 -w0 )
                 echo "::add-mask::$BUILD_IMAGE"
