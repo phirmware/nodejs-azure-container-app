@@ -8,7 +8,7 @@ name: Deploy to Amazon Ecs by Clouddley
             - main
 env:
     AWS_REGION: us-west-2
-    ECR_REPOSITORY: zeus-the-tester-new5
+    ECR_REPOSITORY: zeus-the-tester-new4
 jobs:
     deploy:
         name: Deploy
