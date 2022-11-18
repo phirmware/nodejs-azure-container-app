@@ -8,7 +8,7 @@ name: Deploy to Amazon Ecs by Clouddley
             - main
 env:
     AWS_REGION: us-west-2
-    ECR_REPOSITORY: clouddley-happinessproject6
+    ECR_REPOSITORY: clouddley-testproject5
 jobs:
     deploy:
         name: Deploy
