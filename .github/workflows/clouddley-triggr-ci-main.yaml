@@ -1,0 +1,22 @@
+name: start automatic deployment for triggr app on main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Get latest commit SHA
+        run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
+      - name: Perform curl request
+        env:
+          BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+        run: |
+          curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $COMMIT_SHA" https://api.clouddley.com/v1/provider/webhook/triggr/automaticDeployment
