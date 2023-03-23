@@ -15,8 +15,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
-      - name: Get latest commit SHA
-        run: echo ${{ github.sha }} >> $GITHUB_ENV
       - name: Perform curl request
         run: |
-          curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $COMMIT_SHA" https://b6ed-102-88-35-226.eu.ngrok.io/v1/provider/webhook/triggr/automaticDeployment
+          curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $GITHUB_SHA" https://b6ed-102-88-35-226.eu.ngrok.io/v1/provider/webhook/triggr/automaticDeployment
