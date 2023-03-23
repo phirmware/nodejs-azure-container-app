@@ -14,9 +14,9 @@ jobs:
         with:
           ref: main
       - name: Get latest commit SHA
-        run: echo "::set-env name=COMMIT_SHA::$(git rev-parse HEAD)"
+        run: echo ${{ github.sha }} >> $GITHUB_ENV
       - name: Perform curl request
         env:
           BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
         run: |
-          curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $COMMIT_SHA" https://api.clouddley.com/v1/provider/webhook/triggr/automaticDeployment
+          curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $COMMIT_SHA" https://b6ed-102-88-35-226.eu.ngrok.io/v1/provider/webhook/triggr/automaticDeployment
