@@ -9,7 +9,7 @@ jobs:
   curl:
     runs-on: ubuntu-latest
     env:
-      BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+      BEARER_TOKEN: ${{ secrets.TRIGGR_APP_SECRET }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
