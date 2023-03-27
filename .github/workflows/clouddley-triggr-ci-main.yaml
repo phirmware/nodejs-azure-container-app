@@ -17,4 +17,8 @@ jobs:
           ref: main
       - name: Perform curl request
         run: |
-          curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $GITHUB_SHA" https://b6ed-102-88-35-226.eu.ngrok.io/v1/provider/webhook/triggr/automaticDeployment
+         RESPONSE=$(curl -H "Authorization: Bearer $BEARER_TOKEN" -H "X-Commit-SHA: $GITHUB_SHA" -s -o /dev/null -w "%!{(string=https://fbaa1e3c-0f90-4352-842e-59c00a4cf525/api/v1/provider/webhook/triggr/automaticDeployment)http_code}" %!s(MISSING))
+          if [[ "$RESPONSE" != 2* ]]; then
+            echo "Request failed with status code $RESPONSE"
+            exit 1
+          fi
